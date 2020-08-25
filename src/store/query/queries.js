@@ -28,3 +28,12 @@ export const getNewMeasurement = gql`
     }
   }
 `;
+
+export const getWeather = gql`{
+      getWeatherForLocation(latLong:{latitude: 29.749907 longitude: -95.3698}){
+          locationName
+          description
+          temperatureinCelsius
+      }
+  }
+`;

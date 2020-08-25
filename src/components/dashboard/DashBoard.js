@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import ToggleBtn from "../button/ToggleBtn"
 import Chart from "../chart/Chart"
 import DropDownBar from "../dropDown/DropDownBar"
+import SideBar from "../sideBar/SideBar"
 
 
 const DashBoard = props => {
@@ -102,6 +103,7 @@ const DashBoard = props => {
         }
       return (<div>
             <DropDownBar />
+            <SideBar />
             <Chart />
             <ToggleBtn />
       </div>)

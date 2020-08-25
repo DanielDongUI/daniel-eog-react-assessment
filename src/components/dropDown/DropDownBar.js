@@ -15,8 +15,9 @@ const useStyles = makeStyles({
     },
     StatuBar: {
         position: "relative", 
-        width: "100%",
+        width: "85vw",
         height: "2vh",
+        left:"7.5vw",
         cursor: "pointer",
         '&:hover': {
             boxShadow: '3px 3px 3px black',
@@ -25,9 +26,10 @@ const useStyles = makeStyles({
     StatuBarOpen :{
         display: "block",
         position: "absolute", 
-        width: "100%",
+        width: "85vw",
         height: "2vh",
         top:"34vh",
+        left:"7.5vw",
         cursor: "pointer",
         '&:hover': {
             boxShadow: '3px 3px 3px black',
@@ -47,11 +49,21 @@ const DropDownBar = (props) =>{
                 {props.savedData.map((item,index)=>{
                     return <SingleSavedData key={index} data={item}/>
                 })}
-                <img onClick={handleOnClick} className={styles.StatuBarOpen} src={line} alt="StatuBar"/>
+                <img 
+                onClick={handleOnClick} 
+                className={styles.StatuBarOpen} 
+                src={line} 
+                alt="StatuBar"
+                />
             </div>)
         }else{
             return (
-                <img onClick={handleOnClick} className={styles.StatuBar} src={line} alt="StatuBar"/>
+                <img 
+                onClick={handleOnClick} 
+                className={styles.StatuBar} 
+                src={line} 
+                alt="StatuBar"
+                />
             )
         }
     }
