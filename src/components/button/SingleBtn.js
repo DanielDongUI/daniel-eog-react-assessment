@@ -15,7 +15,7 @@ const useStyles = makeStyles({
         cursor: "pointer",
         '&:hover': {
             boxShadow: '4px 4px 4px black',
-          },
+        },
         
     },
     title: {

@@ -12,7 +12,9 @@ const initialState ={
     lastOilTemp:null,
     lastTubingPressure:null,
     lastInjValveOpen:null,
-
+    //////////
+    savedData:[],
+    savedStatus: 0 
   }
   
   
@@ -29,7 +31,7 @@ const initialState ={
                   lastInjValveOpen: action.payload.name  === "injValveOpen" ? action.payload.object  : state.lastInjValveOpen,
               }
             case 'STORE_CHAR' :
-                return {
+              return {
                 ...state,
                 flareTemp: action.payload.name === "flareTemp" ? action.payload.array : state.flareTemp,
                 waterTemp: action.payload.name  === "waterTemp" ? action.payload.array  : state.waterTemp,
@@ -37,8 +39,32 @@ const initialState ={
                 oilTemp: action.payload.name  === "oilTemp" ? action.payload.array  : state.oilTemp,
                 tubingPressure: action.payload.name  === "tubingPressure" ? action.payload.array  : state.tubingPressure,
                 injValveOpen: action.payload.name  === "injValveOpen" ? action.payload.array  : state.injValveOpen,
-                
-                }
+              }
+            case 'DELETE_SAVE':
+                console.log("payload",action.payload)
+              return {
+                ...state,
+                savedData: [...state.savedData.filter(item => item !== action.payload)]
+              }
+            case 'ADD_SAVE' :
+                if (state.savedData.length === 6 ) {
+                    let newArray = JSON.parse(JSON.stringify(state.savedData))
+                    newArray.push(action.payload)
+                    newArray.shift()
+                    return {
+                        ...state,
+                        savedData : newArray
+                    }
+                } 
+                return {
+                    ...state,
+                    savedData : [...state.savedData, action.payload]
+              }  
+            case 'ADD_SAVED_STATUS' : 
+              return {
+                  ...state,
+                savedStatus : state.savedStatus+1
+              }
           default:
               return state
       }

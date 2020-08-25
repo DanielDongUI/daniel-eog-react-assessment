@@ -6,6 +6,7 @@ import { connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ToggleBtn from "../button/ToggleBtn"
 import Chart from "../chart/Chart"
+import DropDownBar from "../dropDown/DropDownBar"
 
 
 const DashBoard = props => {
@@ -99,6 +100,7 @@ const DashBoard = props => {
           props.storeChar(newArray,"injValveOpen")
         }
       return (<div>
+            <DropDownBar />
             <Chart />
             <ToggleBtn />
       </div>)

@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { addSave } from "../../store/actions/dataActions"
 
 const useStyles = makeStyles({
     container: {
@@ -14,6 +15,7 @@ const useStyles = makeStyles({
     },
   });
 const CharTooltip = (payload) =>{
+    const [currentStatus , setStatus] = useState(0)
     const styles = useStyles();
     let time = payload.label
     const realTime = new Date(time).toLocaleTimeString()
@@ -23,10 +25,13 @@ const CharTooltip = (payload) =>{
             i = index;
         }
     }
-
-
+    if(payload.savedStatus!== currentStatus && payload.active) {
+        let tempData = payload.charData.filter((item)=>item.name === time)
+        payload.addSave(tempData[0])
+        setStatus(payload.savedStatus)
+    }
     return (
-        <div  className={styles.container}>
+        <div className={styles.container}>
             <h4>{realTime}</h4>
             <p>FlareTemp: {payload.flareTemp[i].value} F</p>
             <p>WaterTemp: {payload.waterTemp[i].value} F</p>
@@ -47,19 +52,22 @@ const mapStatetoProps = state =>{
         oilTemp : state.dataReducer.oilTemp,
         tubingPressure : state.dataReducer.tubingPressure,
         injValveOpen : state.dataReducer.injValveOpen,
-        /////////////
+        //////////
         flareTempBtn : state.statusReducer.flareTemp,
         waterTempBtn : state.statusReducer.waterTemp,
         casingPressureBtn : state.statusReducer.casingPressure,
         oilTempBtn : state.statusReducer.oilTemp,
         tubingPressureBtn : state.statusReducer.tubingPressure,
         injValveOpenBtn : state.statusReducer.injValveOpen,
+        //////////
+        savedStatus : state.dataReducer.savedStatus
   
     }
   }
   
   const mapDispatchToProps = dispatch =>
         bindActionCreators({
+            addSave
         },dispatch)
     
   

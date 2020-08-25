@@ -6,7 +6,7 @@ import SingleBtn from "./SingleBtn"
 
 const useStyles = makeStyles({
     container: {
-        height: '15vh',
+        height: '13vh',
         display: "flex",
         justifyContent : "space-evenly",
         alignItems: "center"

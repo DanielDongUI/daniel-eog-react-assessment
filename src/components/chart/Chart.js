@@ -4,12 +4,12 @@ import { connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Legend, Tooltip, CartesianGrid } from 'recharts';
 import CharTooltip from "./CharTooltip"
+import {addSavedStatus} from "../../store/actions/dataActions"
 
 const useStyles = makeStyles({
     container: {
         height: '83vh',
         minWidth: '1000px',
-        //background: 'gray',
     },
   });
 const Chart = (props) =>{
@@ -32,14 +32,17 @@ const Chart = (props) =>{
             tempArray.push(tempSingleData)
         })
         setData(tempArray)
-      }, [props.injValveOpen])
+    }, [props.injValveOpen])
+    const handleOnClick = () =>{
+        props.addSavedStatus()
+    }
     return (
-        <div className={styles.container} >
+        <div className={styles.container} onClick={handleOnClick} >
             <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={charData}>
                 <YAxis label={{ angle: -90, value: 'values', position: 'insideLeft' }} />
                 <XAxis dataKey="name" tickFormatter={(name)=>new Date(name).toLocaleTimeString()} interval="preserveStartEnd" minTickGap={25} />
-                <Tooltip content={<CharTooltip />}/>
+                <Tooltip content={<CharTooltip charData={charData} />}/>
                 <CartesianGrid  strokeDasharray="5 5" />
                 <Legend />
                 <Line style={{display: props.flareTempBtn? "":"none"}} type="monotone" dot={false} key="flareTemp" dataKey="flareTemp" stroke="#FF8C00" />
@@ -63,19 +66,22 @@ const mapStatetoProps = state =>{
         oilTemp : state.dataReducer.oilTemp,
         tubingPressure : state.dataReducer.tubingPressure,
         injValveOpen : state.dataReducer.injValveOpen,
-        /////////////
+        //////////
         flareTempBtn : state.statusReducer.flareTemp,
         waterTempBtn : state.statusReducer.waterTemp,
         casingPressureBtn : state.statusReducer.casingPressure,
         oilTempBtn : state.statusReducer.oilTemp,
         tubingPressureBtn : state.statusReducer.tubingPressure,
         injValveOpenBtn : state.statusReducer.injValveOpen,
+        //////////
+        savedStatus : state.statusReducer.savedStatus
   
     }
   }
   
   const mapDispatchToProps = dispatch =>
         bindActionCreators({
+            addSavedStatus
         },dispatch)
     
   

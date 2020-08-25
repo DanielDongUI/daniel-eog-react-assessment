@@ -13,4 +13,22 @@ export const updataChar = (object,name) => ({
     payload: {object,name}
 })
 
+export const addSave = data => ({
+    type: 'ADD_SAVE',
+    payload: data
+})
+
+export const deleteSave = data => ({
+    type: 'DELETE_SAVE',
+    payload: data
+})
+
+export const addSavedStatus = () => ({
+    type: 'ADD_SAVED_STATUS',
+    payload: ""
+})
+
+
+
+
 
