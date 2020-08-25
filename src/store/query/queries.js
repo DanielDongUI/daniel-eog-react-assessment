@@ -12,16 +12,6 @@ export const getMultipleMeasurementsQuery = gql`
   }
 `;
 
-export const getLastKnownMeasurementQuery = gql`
-  query($metricName: String!) {
-    getLastKnownMeasurement(metricName: $metricName) {
-      metric
-      value
-      unit
-    }
-  }
-`;
-
 export const getMetricsQuery = gql`
   {
     getMetrics

@@ -16,7 +16,6 @@ const useStyles = makeStyles({
         '&:hover': {
             boxShadow: '4px 4px 4px black',
         },
-        
     },
     title: {
         width: "100%",
@@ -32,10 +31,9 @@ const useStyles = makeStyles({
 
 const SingleBtn = (props) => {
     const styles = useStyles() 
-    //console.log(props.info.metric)
-    let currentBtn = null
-    let backGroundColor = null
-    if(props.info.metric === "flareTemp") {
+    let currentBtn = null //save what is the current btn name
+    let backGroundColor = null // every btn has a different color
+    if(props.info.metric === "flareTemp") { //set the btn color and btn name
         currentBtn = props.flareTemp
         backGroundColor = "#FF8C00"
     }
@@ -59,11 +57,10 @@ const SingleBtn = (props) => {
         currentBtn = props.injValveOpen
         backGroundColor = "#FFD700" 
     }
-    const handleOnClick = ()=>{
+    const handleOnClick = ()=>{ //click to toggle the btn 
         console.log(props.info.metric)
         props.switchBtnStatus(props.info.metric)
     }
-
     return (
     <div >
         <div 
@@ -83,6 +80,7 @@ const SingleBtn = (props) => {
 
 const mapStatetoProps = state =>{
     return {
+        //full 30 min data
         flareTemp: state.statusReducer.flareTemp,
         waterTemp : state.statusReducer.waterTemp,
         casingPressure: state.statusReducer.casingPressure,

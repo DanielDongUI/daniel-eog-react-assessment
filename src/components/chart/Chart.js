@@ -33,7 +33,7 @@ const Chart = (props) =>{
         })
         setData(tempArray)
     }, [props.injValveOpen])
-    const handleOnClick = () =>{
+    const handleOnClick = () =>{ //add one to the counter 
         props.addSavedStatus()
     }
     return (
@@ -60,20 +60,21 @@ const Chart = (props) =>{
 
 const mapStatetoProps = state =>{
     return {
+        //////////full data
         flareTemp : state.dataReducer.flareTemp,
         waterTemp :state.dataReducer.waterTemp,
         casingPressure : state.dataReducer.casingPressure,
         oilTemp : state.dataReducer.oilTemp,
         tubingPressure : state.dataReducer.tubingPressure,
         injValveOpen : state.dataReducer.injValveOpen,
-        //////////
+        //////////display status
         flareTempBtn : state.statusReducer.flareTemp,
         waterTempBtn : state.statusReducer.waterTemp,
         casingPressureBtn : state.statusReducer.casingPressure,
         oilTempBtn : state.statusReducer.oilTemp,
         tubingPressureBtn : state.statusReducer.tubingPressure,
         injValveOpenBtn : state.statusReducer.injValveOpen,
-        //////////
+        //////////counter
         savedStatus : state.statusReducer.savedStatus
   
     }

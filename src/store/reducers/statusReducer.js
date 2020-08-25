@@ -10,6 +10,7 @@ const initialState ={
 const statusReducer = (state = initialState, action) =>{
     //console.log(action.payload)
       switch (action.type) {
+        //toggle btn 
         case 'SWITCH_BTN_STATUS' :
             return {
             ...state,

@@ -10,7 +10,7 @@ import DropDownBar from "../dropDown/DropDownBar"
 
 
 const DashBoard = props => {
-  //set the time to 30 min before
+  //set the after to 30 min before
   let MS_PER_MINUTE = 60000;
   const afterT = new Date(props.lastInjValveOpen.at - 30 * MS_PER_MINUTE);
   const after = afterT.valueOf() 
@@ -40,6 +40,7 @@ const DashBoard = props => {
         after: after,
     }
   ];
+  //fetch the full data
   const { data, error, loading} = useQuery(getMultipleMeasurementsQuery, {variables : {
     input
   } } )
@@ -52,7 +53,7 @@ const DashBoard = props => {
     console.log(error)
     //return <div>error! {error.message}</div>
   }
-
+  // prevent infinate loop
   useEffect(() => {
     if (data){
       data.getMultipleMeasurements.forEach(item=>{
@@ -60,8 +61,8 @@ const DashBoard = props => {
       })
     }
   }, [data])
-        
-    const  renderChar =  () =>{
+    //save the latest data in the full data
+    const renderChar =  () =>{
       if(props.flareTemp !==null && props.lastFlareTemp !== null){
         if(props.lastFlareTemp.at !== props.flareTemp[props.flareTemp.length-1].at) {
           let newArray =  JSON.parse(JSON.stringify(props.flareTemp));
@@ -117,13 +118,14 @@ const DashBoard = props => {
 
 const mapStatetoProps = state =>{
   return {
+    //////////full data
     flareTemp : state.dataReducer.flareTemp,
     waterTemp :state.dataReducer.waterTemp,
     casingPressure : state.dataReducer.casingPressure,
     oilTemp : state.dataReducer.oilTemp,
     tubingPressure : state.dataReducer.tubingPressure,
     injValveOpen : state.dataReducer.injValveOpen,
-    ///////////////
+    //////////latst data
     lastFlareTemp : state.dataReducer.lastFlareTemp,
     lastWaterTemp : state.dataReducer.lastWaterTemp,
     lastCasingPressure: state.dataReducer.lastCasingPressure,

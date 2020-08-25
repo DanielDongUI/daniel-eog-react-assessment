@@ -20,6 +20,7 @@ const initialState ={
   
   const dataReducer = (state = initialState, action) =>{
       switch (action.type) {
+            // store the subcription latest data
             case 'STORE_SUBSCRIPTION':
               return {
                   ...state,
@@ -30,6 +31,7 @@ const initialState ={
                   lastTubingPressure: action.payload.name  === "tubingPressure" ? action.payload.object  : state.lastTubingPressure,
                   lastInjValveOpen: action.payload.name  === "injValveOpen" ? action.payload.object  : state.lastInjValveOpen,
               }
+            // store the full data
             case 'STORE_CHAR' :
               return {
                 ...state,
@@ -40,12 +42,14 @@ const initialState ={
                 tubingPressure: action.payload.name  === "tubingPressure" ? action.payload.array  : state.tubingPressure,
                 injValveOpen: action.payload.name  === "injValveOpen" ? action.payload.array  : state.injValveOpen,
               }
+            //delete a data from save list  
             case 'DELETE_SAVE':
                 console.log("payload",action.payload)
               return {
                 ...state,
                 savedData: [...state.savedData.filter(item => item !== action.payload)]
               }
+            //add a data to save list  
             case 'ADD_SAVE' :
                 if (state.savedData.length === 6 ) {
                     let newArray = JSON.parse(JSON.stringify(state.savedData))
@@ -59,7 +63,8 @@ const initialState ={
                 return {
                     ...state,
                     savedData : [...state.savedData, action.payload]
-              }  
+              }
+            //add 1 on counter    
             case 'ADD_SAVED_STATUS' : 
               return {
                   ...state,

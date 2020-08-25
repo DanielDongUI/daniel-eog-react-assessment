@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 
 
 const Subscription = (props) => {
+    //fetch the latest data
     const { data, error ,loading } = useSubscription(getNewMeasurement)
     if(loading) {
         console.log("subloading")

@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 
 const MainPage = (props) => {
     const conditionRender = () =>{
+        //render after get the first subscription data
         if (props.lastInjValveOpen !== null){
         return  <DashBoard />
         }else{

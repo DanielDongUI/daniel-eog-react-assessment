@@ -37,7 +37,7 @@ const useStyles = makeStyles({
 
 const DropDownBar = (props) =>{
     const styles = useStyles();
-    const [dropDownStatus, setStatus] = useState(false)
+    const [dropDownStatus, setStatus] = useState(false) // set drop bar status
     const handleOnClick = () =>{
         setStatus(!dropDownStatus)
     }

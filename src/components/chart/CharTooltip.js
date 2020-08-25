@@ -15,16 +15,18 @@ const useStyles = makeStyles({
     },
   });
 const CharTooltip = (payload) =>{
-    const [currentStatus , setStatus] = useState(0)
+    const [currentStatus , setStatus] = useState(0) // compare with the counter
     const styles = useStyles();
     let time = payload.label
     const realTime = new Date(time).toLocaleTimeString()
     let i = 0;
+    // find the index of the current tooltip in the full data
     for (let index = 0; index < payload.flareTemp.length;index++){
         if (payload.flareTemp[index].at === time){
             i = index;
         }
     }
+    //compare with the counter, if condition fit, save the tooltip data in the save list
     if(payload.savedStatus!== currentStatus && payload.active) {
         let tempData = payload.charData.filter((item)=>item.name === time)
         payload.addSave(tempData[0])
@@ -46,20 +48,21 @@ const CharTooltip = (payload) =>{
 
 const mapStatetoProps = state =>{
     return {
+        /////////full data
         flareTemp : state.dataReducer.flareTemp,
         waterTemp :state.dataReducer.waterTemp,
         casingPressure : state.dataReducer.casingPressure,
         oilTemp : state.dataReducer.oilTemp,
         tubingPressure : state.dataReducer.tubingPressure,
         injValveOpen : state.dataReducer.injValveOpen,
-        //////////
+        //////////latest data
         flareTempBtn : state.statusReducer.flareTemp,
         waterTempBtn : state.statusReducer.waterTemp,
         casingPressureBtn : state.statusReducer.casingPressure,
         oilTempBtn : state.statusReducer.oilTemp,
         tubingPressureBtn : state.statusReducer.tubingPressure,
         injValveOpenBtn : state.statusReducer.injValveOpen,
-        //////////
+        //////////counter
         savedStatus : state.dataReducer.savedStatus
   
     }

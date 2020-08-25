@@ -5,11 +5,7 @@ import { getMainDefinition } from 'apollo-utilities';
 import {
   ApolloClient,
   InMemoryCache,
-  NormalizedCacheObject,
-
 } from '@apollo/client'
-
-//import { getLastKnownMeasurementQuery } from './queries';
 
 const wsLink = new WebSocketLink({ //subcriptions
     uri: 'wss://react.eogresources.com/graphql',

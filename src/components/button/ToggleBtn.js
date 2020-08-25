@@ -12,7 +12,6 @@ const useStyles = makeStyles({
         alignItems: "center"
     },
   });
-
 const ToggleBtn = (props) =>{
     const styles = useStyles();
     return (
@@ -29,6 +28,7 @@ const ToggleBtn = (props) =>{
 
 const mapStatetoProps = state =>{
     return {
+      //data from subscription, the latest data
       lastFlareTemp : state.dataReducer.lastFlareTemp,
       lastWaterTemp : state.dataReducer.lastWaterTemp,
       lastCasingPressure: state.dataReducer.lastCasingPressure,
@@ -38,11 +38,10 @@ const mapStatetoProps = state =>{
   
     }
   }
-  
-  const mapDispatchToProps = dispatch =>
-        bindActionCreators({
-        },dispatch)
+const mapDispatchToProps = dispatch =>
+      bindActionCreators({
+      },dispatch)
     
   
   
-  export default connect(mapStatetoProps,mapDispatchToProps)(ToggleBtn);
+export default connect(mapStatetoProps,mapDispatchToProps)(ToggleBtn);
