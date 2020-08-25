@@ -26,13 +26,7 @@ const Subscription = (props) => {
         //     unit: data.newMeasurement.unit
         // }
     if(data){
-    if(data.newMeasurement.metric === "flareTemp"){
             props.storeSubscription(data.newMeasurement,data.newMeasurement.metric)
-            if(props.flareTemp !== null) {
-                //props.updataChar(data.newMeasurement,data.newMeasurement.metric)
-            }
-
-        }
     }
     if (props.lastFlareTemp!== null){
         return <div>{props.lastFlareTemp.at}</div>
