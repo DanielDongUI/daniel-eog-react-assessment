@@ -1,5 +1,4 @@
 import { useQuery } from "@apollo/client"
-import gql from 'graphql-tag'
 import React, {useEffect} from 'react'
 import { getMultipleMeasurementsQuery} from "../../store/query/queries"
 import {storeChar} from '../../store/actions/dataActions'
@@ -10,44 +9,58 @@ import Chart from "../chart/Chart"
 
 
 const DashBoard = props => {
-    let input = [
-      {
-        metricName: "flareTemp",
-      },
-      {
-        metricName: "waterTemp",
-      },
-      {
-          metricName: "casingPressure",
-        },
-        {
-          metricName: "oilTemp",
-        },
-        {
-          metricName: "tubingPressure",
-        },
-        {
-          metricName: "injValveOpen",
-        }
-    ];
-    const { data, error, loading} = useQuery(getMultipleMeasurementsQuery, {variables : {
-      input
-    }} )
-
-    if(loading) {
-      //return <div>loading...</div>
+  //set the time to 30 min before
+  let MS_PER_MINUTE = 60000;
+  const afterT = new Date(props.lastInjValveOpen.at - 30 * MS_PER_MINUTE);
+  const after = afterT.valueOf() 
+  const input = [
+    {
+      metricName: "flareTemp",
+      after: after,
+    },
+    {
+      metricName: "waterTemp",
+      after: after,
+    },
+    {
+      metricName: "casingPressure",
+      after: after,
+    },
+    {
+      metricName: "oilTemp",
+      after: after,
+    },
+    {
+      metricName: "tubingPressure",
+      after: after,
+    },
+    {
+      metricName: "injValveOpen",
+        after: after,
     }
-    if (error) {
-      //return <div>error! {error.message}</div>
-    }
+  ];
+  const pause = !!6
+  const { data, error, loading} = useQuery(getMultipleMeasurementsQuery, {variables : {
+    input
+  } } )
 
-    useEffect(() => {
-      if (data){
-        data.getMultipleMeasurements.forEach(item=>{
-          props.storeChar(item.measurements,item.metric)
-        })
-      }
-    }, [data])
+  if(loading) {
+    console.log(loading)
+    //return <div>loading...</div>
+  }
+  if (error) {
+    console.log(error)
+    //return <div>error! {error.message}</div>
+  }
+
+  useEffect(() => {
+    if (data){
+      console.log(data)
+      data.getMultipleMeasurements.forEach(item=>{
+        props.storeChar(item.measurements,item.metric)
+      })
+    }
+  }, [data])
         
     const  renderChar =  () =>{
       if(props.flareTemp !==null && props.lastFlareTemp !== null){
@@ -88,9 +101,6 @@ const DashBoard = props => {
           props.storeChar(newArray,"injValveOpen")
         }
       return (<div>
-            {/* <div>flareTemp: {props.flareTemp[0].at} : {props.flareTemp[0].value} , {props.flareTemp[props.flareTemp.length-1].at} : {props.flareTemp[props.flareTemp.length-1].value} </div>
-            <div>waterTemp: {props.waterTemp[0].at} : {props.waterTemp[0].value} , {props.waterTemp[props.waterTemp.length-1].at} : {props.waterTemp[props.waterTemp.length-1].value} </div>
-            <div>casingPressure: {props.casingPressure[0].at} : {props.casingPressure[0].value} , {props.casingPressure[props.casingPressure.length-1].at} : {props.casingPressure[props.casingPressure.length-1].value} </div> */}
             <Chart />
             <ToggleBtn />
       </div>)
@@ -98,12 +108,9 @@ const DashBoard = props => {
         return <div>Loading...</div>
       }
     }
-
-
     return (
         <div>
             {renderChar( )}
-            {/* {localRender()} */}
         </div>
     )
 }

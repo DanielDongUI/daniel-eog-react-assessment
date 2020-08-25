@@ -31,23 +31,30 @@ const SingleBtn = (props) => {
     const styles = useStyles() 
     //console.log(props.info.metric)
     let currentBtn = null
+    let backGroundColor = null
     if(props.info.metric === "flareTemp") {
         currentBtn = props.flareTemp
+        backGroundColor = "#FF8C00"
     }
     if(props.info.metric === "waterTemp") {
         currentBtn = props.waterTemp
+        backGroundColor = "#9932CC"
     }
     if(props.info.metric === "casingPressure") {
         currentBtn = props.casingPressure
+        backGroundColor = "#8FBC8F"
     }
     if(props.info.metric === "oilTemp") {
         currentBtn = props.oilTemp
+        backGroundColor ="#00CED1"
     }
     if(props.info.metric === "tubingPressure") {
         currentBtn = props.tubingPressure
+        backGroundColor = "#FF1493"
     }
     if(props.info.metric === "injValveOpen") {
         currentBtn = props.injValveOpen
+        backGroundColor = "#FFD700" 
     }
     const handleOnClick = ()=>{
         console.log(props.info.metric)
@@ -59,13 +66,13 @@ const SingleBtn = (props) => {
         <div 
         onClick={handleOnClick} 
         className={styles.container}  
-        style={{opacity: currentBtn ? '1' : '.2' }}
+        style={{opacity: currentBtn ? '1' : '.2', backgroundColor: backGroundColor }}
         >
             <h3 className={styles.title}>
                 {props.info.metric}
             </h3>
             <p className={styles.title}>
-                {props.info.value} {props.info.unit}
+                {props.info.value} {props.info.unit} 
             </p>
         </div>
     </div>)
