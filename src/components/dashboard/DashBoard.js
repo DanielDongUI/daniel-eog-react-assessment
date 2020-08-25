@@ -5,7 +5,7 @@ import { getMultipleMeasurementsQuery} from "../../store/query/queries"
 import {storeChar} from '../../store/actions/dataActions'
 import { connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Button from "../button/button"
+import ToggleBtn from "../button/ToggleBtn"
 import Chart from "../chart/Chart"
 
 
@@ -91,9 +91,11 @@ const DashBoard = props => {
             {/* <div>flareTemp: {props.flareTemp[0].at} : {props.flareTemp[0].value} , {props.flareTemp[props.flareTemp.length-1].at} : {props.flareTemp[props.flareTemp.length-1].value} </div>
             <div>waterTemp: {props.waterTemp[0].at} : {props.waterTemp[0].value} , {props.waterTemp[props.waterTemp.length-1].at} : {props.waterTemp[props.waterTemp.length-1].value} </div>
             <div>casingPressure: {props.casingPressure[0].at} : {props.casingPressure[0].value} , {props.casingPressure[props.casingPressure.length-1].at} : {props.casingPressure[props.casingPressure.length-1].value} </div> */}
-            <Button />
             <Chart />
+            <ToggleBtn />
       </div>)
+      }else{
+        return <div>Loading...</div>
       }
     }
 

@@ -2,21 +2,28 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
+import SingleBtn from "./SingleBtn"
 
 const useStyles = makeStyles({
     container: {
-
-        height: '83vh',
-        minWidth: '1000px',
-        background: 'gray',
+        height: '15vh',
+        background: 'yellow',
+        display: "flex",
+        justifyContent : "space-evenly",
+        alignItems: "center"
     },
   });
 
-const Chart = (props) =>{
+const ToggleBtn = (props) =>{
     const styles = useStyles();
     return (
         <div className={styles.container} >
-
+          <SingleBtn info = {props.lastFlareTemp} />
+          <SingleBtn info = {props.lastWaterTemp} />
+          <SingleBtn info = {props.lastCasingPressure} />
+          <SingleBtn info = {props.lastOilTemp} />
+          <SingleBtn info = {props.lastTubingPressure} />
+          <SingleBtn info = {props.lastInjValveOpen} />
         </div>
     )
 }
@@ -39,4 +46,4 @@ const mapStatetoProps = state =>{
     
   
   
-  export default connect(mapStatetoProps,mapDispatchToProps)(Chart);
+  export default connect(mapStatetoProps,mapDispatchToProps)(ToggleBtn);
