@@ -11,7 +11,6 @@ const useStyles = makeStyles({
         backgroundColor:"rgb(160,220,250,0.2)",
         padding:"10px",
         borderRadius: '10px',
-        padding:"5px",
         alignItems: "center"    
     },
   });

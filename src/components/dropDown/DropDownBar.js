@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { connect, useStore } from 'react-redux';
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import SingleSavedData from "./SingleSavedData"
 import line from "./line.png"
