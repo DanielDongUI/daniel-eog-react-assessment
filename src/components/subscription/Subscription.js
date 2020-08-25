@@ -15,7 +15,7 @@ const Subscription = (props) => {
         console.log("suberror")
     }
     if(data){
-            props.storeSubscription(data.newMeasurement,data.newMeasurement.metric)
+        props.storeSubscription(data.newMeasurement,data.newMeasurement.metric)
     }
     return (
         <div>

@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Legend, Tooltip, CartesianGrid } from 'recharts';
+import CharTooltip from "./CharTooltip"
 
 const useStyles = makeStyles({
     container: {
@@ -18,10 +19,9 @@ const Chart = (props) =>{
     //loop throught all the data
     useEffect(() => {
         let tempArray = []
-        console.log(props.flareTemp.length)
         props.flareTemp.forEach((item,index)=>{
             let tempSingleData = {
-                name: new Date(item.at).toLocaleTimeString(),
+                name: item.at,
                 flareTemp : item.value,
                 waterTemp :props.waterTemp[index].value,
                 casingPressure : props.casingPressure[index].value,
@@ -38,8 +38,8 @@ const Chart = (props) =>{
             <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={charData}>
                 <YAxis label={{ angle: -90, value: 'values', position: 'insideLeft' }} />
-                <XAxis dataKey="name" interval="preserveStartEnd" minTickGap={25} />
-                {/* <Tooltip content={<ChartTooltip metrics={metrics} />} /> */}
+                <XAxis dataKey="name" tickFormatter={(name)=>new Date(name).toLocaleTimeString()} interval="preserveStartEnd" minTickGap={25} />
+                <Tooltip content={<CharTooltip />}/>
                 <CartesianGrid  strokeDasharray="5 5" />
                 <Legend />
                 <Line style={{display: props.flareTempBtn? "":"none"}} type="monotone" dot={false} key="flareTemp" dataKey="flareTemp" stroke="#FF8C00" />

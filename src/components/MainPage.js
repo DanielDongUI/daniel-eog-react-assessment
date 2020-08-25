@@ -10,7 +10,7 @@ const MainPage = (props) => {
         if (props.lastInjValveOpen !== null){
         return  <DashBoard />
         }else{
-            return <div>loading...</div>
+            return <div>Loading...</div>
         }
     }
 

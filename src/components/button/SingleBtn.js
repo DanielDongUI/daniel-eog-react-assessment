@@ -12,7 +12,10 @@ const useStyles = makeStyles({
         borderRadius: '10px',
         justifyContent : "space-evenly",
         padding:"5px",
-        cursor: "pointer"
+        cursor: "pointer",
+        '&:hover': {
+            boxShadow: '4px 4px 4px black',
+          },
         
     },
     title: {
