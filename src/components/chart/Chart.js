@@ -2,6 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Legend, Tooltip, CartesianGrid } from 'recharts';
 
 const useStyles = makeStyles({
     container: {
@@ -16,7 +17,7 @@ const Chart = (props) =>{
     const styles = useStyles();
     return (
         <div className={styles.container} >
-
+            
         </div>
     )
 }

@@ -8,8 +8,9 @@ const initialState ={
   }
   
 const statusReducer = (state = initialState, action) =>{
+    //console.log(action.payload)
       switch (action.type) {
-        case 'STORE_CHAR' :
+        case 'SWITCH_BTN_STATUS' :
             return {
             ...state,
             flareTemp: action.payload === "flareTemp" ? !state.flareTemp : state.flareTemp,
