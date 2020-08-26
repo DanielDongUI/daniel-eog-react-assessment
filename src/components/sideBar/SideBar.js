@@ -48,6 +48,7 @@ const SideBar = (props) =>{
     const handleOnClick = () =>{
         setStatus(!sideBar)
     }
+    //base on the hambuger btn status 
     const sideBarRender = () =>{
         if(sideBar){
             return (<div className={styles.container} >

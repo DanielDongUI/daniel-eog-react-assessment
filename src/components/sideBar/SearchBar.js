@@ -1,9 +1,9 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {getMetricsQuery} from "../../store/query/queries"
-import { useQuery } from "@apollo/client"
+import {getMetricsQuery} from "../../store/query/queries";
+import { useQuery } from "@apollo/client";
 import { debounce } from 'lodash';
 
 const useStyles = makeStyles({
@@ -23,8 +23,8 @@ const SideBar = (props) =>{
     const [show,setShow] = useState(false) //display the search result or not
     const [metrics, setMetrics] = useState([]) // metrics that fetched
     const [suggestionMetrics, setSuggestion] = useState([]) //autoComplete array
-    const [result, setResult] = useState({})
-    const [info, setInfo] = useState([])
+    const [result, setResult] = useState({}) //contain the value
+    const [info, setInfo] = useState([]) //contain the martic name, unit and time
     //fetch the metric query
     const { data, error, loading} = useQuery(getMetricsQuery)
     if(loading) {
@@ -88,6 +88,7 @@ const SideBar = (props) =>{
             })}
         </ul>
     }
+    //save the selected suggestion in the input state
     const selectSuggestion = (text) => {
         setInput(text)
         setSuggestion([])
@@ -101,6 +102,7 @@ const SideBar = (props) =>{
         if (metrics.filter(item=>item===input).length === 0){
             return <div>metric not found</div>
         }
+        //base one the input find the result
         let MS_PER_MINUTE = 60000;
         const afterT = new Date(props.lastInjValveOpen.at - time * MS_PER_MINUTE);
         const after = afterT.valueOf() 
