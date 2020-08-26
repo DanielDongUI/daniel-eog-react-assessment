@@ -12,7 +12,7 @@ const useStyles = makeStyles({
         width: "35vw",
         top:"30px",
         alignItems: "center",
-        backgroundColor:"rgb(255,155,81,0.6)",
+        backgroundColor:"rgb(255,255,255,0.1)",
     },
   });
   
@@ -23,7 +23,7 @@ const Info = (props) =>{
     
     if(loading) {
         //console.log(loading)
-        //return <div>loading...</div>
+        //return <div>oading...</div>
     }
     if (error) {
        console.log(error)

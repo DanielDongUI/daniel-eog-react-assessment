@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import menu from "./menu.png"
 import Info from "./Info"
+import SearchBar from "./SearchBar"
 
 const useStyles = makeStyles({
     container: {
@@ -55,8 +56,8 @@ const SideBar = (props) =>{
                 src={menu} 
                 alt="SideBar"
                 />
-                {/* <SearchBar /> */}
                 <Info />
+                <SearchBar />
             </div>)
         }else{
             return (
