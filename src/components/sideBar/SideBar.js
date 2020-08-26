@@ -10,7 +10,7 @@ const useStyles = makeStyles({
     container: {
         position: "absolute",
         height: '100%',
-        width: "35vw",
+        width: "27vw",
         alignItems: "center",
         backgroundColor:"rgb(230,230,240,0.7)",
         zIndex:5
