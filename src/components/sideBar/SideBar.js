@@ -12,7 +12,7 @@ const useStyles = makeStyles({
         height: '100%',
         width: "35vw",
         alignItems: "center",
-        backgroundColor:"rgb(230,230,240,0.6)",
+        backgroundColor:"rgb(230,230,240,0.7)",
         zIndex:5
     },
     sideBar: {

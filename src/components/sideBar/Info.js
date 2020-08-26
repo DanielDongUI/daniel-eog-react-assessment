@@ -33,7 +33,7 @@ const Info = (props) =>{
         return (
         <div className={styles.container}>
             <p>Location: {data.getWeatherForLocation.locationName}</p>
-            <p>Temperature: {data.getWeatherForLocation.temperatureinCelsius}</p>
+            <p>Temperature: {data.getWeatherForLocation.temperatureinCelsius} C</p>
             <p>Description: {data.getWeatherForLocation.description}</p>
         </div>
         )
